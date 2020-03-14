@@ -22,7 +22,7 @@ function creerUtilisateur($nom, $prenom, $email, $enterPassword) {
         $password = $db->quote($enterPassword);
 
         $req = "insert into utilisateur(nom, prenom, email, password  "
-				. " values ($nom,$prenom,$email,$enterPassword);)";
+				. " values ($nom,$prenom,$email,$Password);)";
 
         $db->exec($req);
     }
