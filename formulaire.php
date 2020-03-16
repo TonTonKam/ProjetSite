@@ -1,5 +1,6 @@
 <html>
 	<body>
+	
 		<form method='post' action='creation.utilisateur.php'>
 			<label><b>Nom</b></label>
 			<input type="text" placeholder="Entrer votre nom" name="nom" required>
@@ -15,11 +16,11 @@
 			
 			<label for="status">Status</label>
 			<select id="status" name="status">
+				<option value="autre">Autre</option>
 				<option value="benevole">Benevole</option>
 				<option value="salarier">Salarier</option>
 				<option value="dirigeant">Dirigeant</option>
-				<option value="autre">Autre</option>
-			
+				
 			<input type="submit" value="Valider">
 			<input type="reset" value="Effacer">
 		</form>

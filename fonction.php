@@ -29,7 +29,16 @@ function creerUtilisateur($nom, $prenom, $email, $enterPassword) {
 }
 
 //fonction liste des utilisateurs
-
+function listeUtilisateurs() {
+    $lesUtilisateurs = array();
+    $bd = gestionnaireDeConnexion();
+    if ($bd != NULL) {
+        $req = "select * from utilisateur order by nom";
+        $pdoStatement = $bd->query($req);
+        $lesUtilisateurs = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return $lesUtilisateurs;
+}
 
 
 ?>

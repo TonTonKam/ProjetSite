@@ -6,14 +6,16 @@ session_start();
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
-$password = $_POST['entrerPassword'];
+$enterPassword = $_POST['entrerPassword'];
 
+creerUtilisateur($nom, $prenom, $email, $enterPassword)
+/*
 //$bd = gestionnaireDeConnexion();
 $bd = new PDO('mysql:host=localhost;dbname=dbbm2l', 'root', '');
 $req= $bd->prepare("INSERT INTO utilisateur (`nom`, `prenom`, `email`, `password`) VALUES ($nom, $prenom, $email, $password);") ;
 $req->execute() ;
 echo$req->errorInfo()[2]."<br/>" ;
-/*
+***
 if (isset($_REQUEST)) {
     $nom = $_REQUEST['$nom'];
     $prenom = $_REQUEST['$prenom'];
@@ -24,7 +26,7 @@ if (isset($_REQUEST)) {
     creerUtilisateur($nom, $prenom, $email, $password);
 }
 */
-
-header("Location:consultation.profil.php")
+header("Location:principale.php")
+//header("Location:consultation.profil.php")
 
 ?>
