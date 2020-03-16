@@ -1,7 +1,3 @@
-<?php
-include_once 'fonction.php';
-?>
-
 <html>
 	<body>
 		<form method='post' action='creation.utilisateur.php'>
@@ -30,9 +26,3 @@ include_once 'fonction.php';
 
 	</body>
 </html>
-
-<?php
-
-
-
-?>
