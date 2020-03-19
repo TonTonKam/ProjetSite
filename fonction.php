@@ -1,7 +1,7 @@
 <?php
 //connexion PDO
 //connexion à la base de données
-function gestionnaireDeConnexion() {
+function gestionnaireDeConnexionMysqli() {
     $db = null;
     $db_username = 'root';
     $db_password = '';
@@ -13,20 +13,33 @@ function gestionnaireDeConnexion() {
     echo "Echec de la connexion: " . mysqli_connect_error();
     exit();
 	}else{
-		echo "connection ok";
+		echo "connection ok a la bdd";
 	}
     return $db;
 }
 
+function gestionnaireDeConnexionPdo() {
+    $pdo = null;
+    try {
+        $pdo = new PDO(
+                'mysql:host=localhost;dbname=dbbm2l', 'root', '',
+                array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+        );
+    } catch (PDOException $err) {
+        $messageErreur = $err->getMessage();
+        error_log($messageErreur, 0);
+    }
+    return $pdo;
+}
+
 //creer profil utilisateur
 function creerUtilisateur($nom, $prenom, $email, $enterPass) {
-    $db = gestionnaireDeConnexion();
+    $db = gestionnaireDeConnexionMysqli();
     if ($db != null) {
 
-        $req = "insert into utilisateur(nom, prenom, email, password  "
-				. " values ('$nom', '$prenom', '$email','$enterPass');)";
+        $req = "insert into utilisateur(nom, prenom, email, password) values ('$nom', '$prenom', '$email','$enterPass')";
 
-        $bd->query($req);
+        $requete = $db->query($req);
     }else {
 		echo "Une erreur est survenue.";  
 	}
