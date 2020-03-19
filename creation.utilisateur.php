@@ -3,12 +3,15 @@
 
 session_start();
 
+include_once 'fonction.php';
+
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
 $enterPassword = $_POST['entrerPassword'];
 
-creerUtilisateur($nom, $prenom, $email, $enterPassword)
+creerUtilisateur($nom, $prenom, $email, $enterPassword);
+
 /*
 //$bd = gestionnaireDeConnexion();
 $bd = new PDO('mysql:host=localhost;dbname=dbbm2l', 'root', '');

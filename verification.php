@@ -39,7 +39,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 }
 else
 {
-   header('Location: index.php?=connexion');
+   header('Location: index.php?connexion');
 }
 mysqli_close($db); // fermer la connexion
 ?>
