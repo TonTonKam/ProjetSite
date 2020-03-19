@@ -1,8 +1,6 @@
 <?php
 //B creationEtablissement.traitement.php
 
-session_start();
-
 include_once 'fonction.php';
 
 $nom = $_POST['nom'];

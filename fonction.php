@@ -24,14 +24,15 @@ function creerUtilisateur($nom, $prenom, $email, $enterPass) {
     if ($db != null) {
 
         $req = "insert into utilisateur(nom, prenom, email, password  "
-				. " values ('" . $nom . "', '" . $prenom . "', '" . $email . "', '". $enterPass . "');)";
+				. " values ('$nom', '$prenom', '$email','$enterPass');)";
 
-        $db->query($req);
+        $bd->query($req);
     }else {
 		echo "Une erreur est survenue.";  
 	}
 	session_start();
 	$_SESSION['username'] = $nom;
+	return $requete;
 }
 
 /*

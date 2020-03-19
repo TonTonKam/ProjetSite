@@ -19,7 +19,7 @@
                 <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 				
 				<label><b>Creation d'utilisateur</b></label>
-		<br>
+			<br>
                 <a href=formulaire.php>Créer</a>
 
                 <input type="submit" id='submit' value='LOGIN' >
