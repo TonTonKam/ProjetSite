@@ -8,9 +8,9 @@ include_once 'fonction.php';
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 $email = $_POST['email'];
-$enterPassword = $_POST['entrerPassword'];
+$enterPass = $_POST['entrerPassword'];
 
-creerUtilisateur($nom, $prenom, $email, $enterPassword);
+creerUtilisateur($nom, $prenom, $email, $enterPass);
 
 /*
 //$bd = gestionnaireDeConnexion();

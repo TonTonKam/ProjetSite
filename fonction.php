@@ -19,21 +19,21 @@ function gestionnaireDeConnexion() {
 }
 
 //creer profil utilisateur
-function creerUtilisateur($nom, $prenom, $email, $enterPassword) {
+function creerUtilisateur($nom, $prenom, $email, $enterPass) {
     $db = gestionnaireDeConnexion();
     if ($db != null) {
-        $nomE = $db->mysqli::quote($nom);
-        $prenomE = $db->mysqli::quote($prenom);
-        $emailE = $db->mysqli::quote($email);
-        $passwordE = $db->mysqli::quote($enterPassword);
 
         $req = "insert into utilisateur(nom, prenom, email, password  "
-				. " values ('" . $nomE . "', '" . $prenomE . "', '" . $emailE . "', '". $PasswordE . "');)";
+				. " values ('" . $nom . "', '" . $prenom . "', '" . $email . "', '". $enterPass . "');)";
 
-        $db->exec($req);
+        $db->query($req);
     }else {
 		echo "Une erreur est survenue.";  
 	}
+	session_start();
+	$_SESSION['username'] = $nom;
+}
+
 /*
 // Execution de la requête sql avec $db->query()
 	$succes = $db->query($sql);
@@ -53,7 +53,6 @@ function creerUtilisateur($nom, $prenom, $email, $enterPassword) {
 	// Execution de la requête sql avec $db->query()
 	$succes = $db->query($sql);
 */
-}
 
 //fonction liste des utilisateurs
 function listeUtilisateurs() {
