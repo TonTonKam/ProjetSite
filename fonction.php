@@ -9,6 +9,12 @@ function gestionnaireDeConnexion() {
     $db_host     = 'localhost';
     $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
            or die('pas de connexion to database');
+	if (mysqli_connect_errno()) {
+    echo "Echec de la connexion: " . mysqli_connect_error();
+    exit();
+	}else{
+		echo "connection ok";
+	}
     return $db;
 }
 
@@ -16,16 +22,37 @@ function gestionnaireDeConnexion() {
 function creerUtilisateur($nom, $prenom, $email, $enterPassword) {
     $db = gestionnaireDeConnexion();
     if ($db != null) {
-        $nom = $db->quote($nom);
-        $prenom = $db->quote($prenom);
-        $email = $db->quote($email);
-        $password = $db->quote($enterPassword);
+        $nomE = $db->mysqli::quote($nom);
+        $prenomE = $db->mysqli::quote($prenom);
+        $emailE = $db->mysqli::quote($email);
+        $passwordE = $db->mysqli::quote($enterPassword);
 
         $req = "insert into utilisateur(nom, prenom, email, password  "
-				. " values ($nom,$prenom,$email,$Password);)";
+				. " values ('" . $nomE . "', '" . $prenomE . "', '" . $emailE . "', '". $PasswordE . "');)";
 
         $db->exec($req);
-    }
+    }else {
+		echo "Une erreur est survenue.";  
+	}
+/*
+// Execution de la requête sql avec $db->query()
+	$succes = $db->query($sql);
+	if ($succes) {
+		echo "Requete bien envoye";
+	} 
+	else {
+		echo "Une erreur est survenue.";  
+	}
+// Requête simple
+	$sql = "INSERT INTO eleve (nom, age) VALUES ('Bob', 19)";
+	// Requête dynamique
+	$sql = "INSERT INTO eleve (nom, age) VALUES ('" . $votre_nom . "', " . $votre_age . ")";
+	// Requête dynamique avec variables protégées
+	$sql = "INSERT INTO eleve (nom, age) VALUES ('" . $db->real_escape_string($votre_nom) . "', " . $db->real_escape_string($votre_age) . ")";
+
+	// Execution de la requête sql avec $db->query()
+	$succes = $db->query($sql);
+*/
 }
 
 //fonction liste des utilisateurs
