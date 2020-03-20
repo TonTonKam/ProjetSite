@@ -33,13 +33,28 @@ function gestionnaireDeConnexionPdo() {
 }
 
 //creer profil utilisateur
-function creerUtilisateur($nom, $prenom, $email, $enterPass) {
+function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass) {
     $db = gestionnaireDeConnexionMysqli();
     if ($db != null) {
 
-        $req = "insert into utilisateur(nom, prenom, email, password) values ('$nom', '$prenom', '$email','$enterPass')";
+        $req = "insert into utilisateur(nom, prenom, adresseMail, password) values ('$nom', '$prenom', '$email','$enterPass')";
 
         $requete = $db->query($req);
+    }else {
+		echo "Une erreur est survenue.";  
+	}
+	session_start();
+	$_SESSION['username'] = $nom;
+	return $requete;
+}
+
+function creerUtilisateurPdo($nom, $prenom, $email, $enterPass) {
+    $pdo = gestionnaireDeConnexionPdo();
+    if ($pdo != null) {
+
+        $req = "insert into utilisateur(nom, prenom, email, password) values ('$nom', '$prenom', '$email','$enterPass')";
+
+        $requete = $pdo->query($req);
     }else {
 		echo "Une erreur est survenue.";  
 	}

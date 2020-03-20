@@ -8,7 +8,7 @@ $prenom = $_POST['prenom'];
 $email = $_POST['email'];
 $enterPass = $_POST['entrerPassword'];
 
-creerUtilisateur($nom, $prenom, $email, $enterPass);
+creerUtilisateurMysqli($nom, $prenom, $email, $enterPass);
 
 /*
 //$bd = gestionnaireDeConnexion();
