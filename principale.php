@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -6,7 +7,7 @@
     </head>
 	
 	<!-- top page -->
-    <body style='background:#fff;'>
+    <body >
         <div id="content">
             
             <a href='principale.php?deconnexion=true'><span>Déconnexion</span></a>
