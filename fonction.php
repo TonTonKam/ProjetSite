@@ -52,7 +52,7 @@ function creerUtilisateurPdo($nom, $prenom, $email, $enterPass) {
     $pdo = gestionnaireDeConnexionPdo();
     if ($pdo != null) {
 
-        $req = "insert into utilisateur(nom, prenom, email, password) values ('$nom', '$prenom', '$email','$enterPass')";
+        $req = "insert into utilisateur(nom, prenom, adresseMail, password) values ('$nom', '$prenom', '$email','$enterPass')";
 
         $requete = $pdo->query($req);
     }else {
