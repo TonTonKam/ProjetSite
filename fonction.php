@@ -12,8 +12,6 @@ function gestionnaireDeConnexionMysqli() {
 	if (mysqli_connect_errno()) {
     echo "Echec de la connexion: " . mysqli_connect_error();
     exit();
-	}else{
-		echo "connection ok a la bdd";
 	}
     return $db;
 }
@@ -34,8 +32,8 @@ function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status) {
 	$_SESSION['status'] = $status;
 	return $requete;
 }
-
-function getUser($id) {
+//fonction permettant d'avoir les informations de l'utisateur
+function lireUtilisateur($id) {
 	$db = gestionnaireDeConnexionMysqli();
     if ($db != NULL) {
 		$req = "select * from utilisateur where idUtilisateur = $id";

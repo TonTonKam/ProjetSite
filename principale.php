@@ -22,7 +22,7 @@
                    }
                 }
                 else if ($_SESSION['id'] !== "") {
-                    $user = getUser($_SESSION['id']);
+                    $user = lireUtilisateur($_SESSION['id']);
                     // afficher un message
                     echo "<br>Bonjour {$user['nom']} vous êtes connectés";
                 }

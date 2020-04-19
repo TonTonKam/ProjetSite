@@ -12,7 +12,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
     
    if($username !== "" && $password !== "")
    {
-      $requete = "SELECT nom, idStatus, idUtilisateur FROM utilisateur where 
+      $requete = "SELECT nom, idUtilisateur FROM utilisateur where 
          nom = '".$username."' and password = '".$password."' ";
       $exec_requete = mysqli_query($db, $requete);
       $reponse      = mysqli_fetch_array($exec_requete);
