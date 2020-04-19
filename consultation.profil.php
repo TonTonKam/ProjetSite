@@ -1,32 +1,32 @@
 <html>
 
-<?php
-session_start
-$listeUtilisateurs = listeUtilisateur();
-foreach ($listeUtilisateurs as $lesUtilisateurs):
+<?php 
+session_start();
+include_once 'principale.php';
+include_once 'fonction.php';
+
+// $listeUtilisateurs = listeUtilisateur();
+// foreach ($listeUtilisateurs as $lesUtilisateurs):
+$user = getUser($_SESSION["id"]);
 ?>
 
-	<p> Nom : <?php echo $lesUtilisateurs["nom"] ?> </p>
-	<p> Prenom: <?php echo $lesUtilisateurs["prenom"] ?> </p>
-	<p> Email : <?php echo $lesUtilisateurs["email"] ?> </p>
+	<p> Nom : <?php echo $user["nom"] ?> </p>
+	<p> Prenom: <?php echo $user["prenom"] ?> </p>
+	<p> Email : <?php echo $user["adresseMail"] ?> </p>
 	<p> Mot de passe : ***** </p>
 
 	<li>
 	<a href="modificationEtablissement.php?numUtilisateur=<?php
-	echo $lesUtilisateurs["id"] ?>">Modifier </a>
+	echo $user["id"] ?>">Modifier </a>
 	</li>
 	<li>
-	<a href="detailEtablissement.php?numUtilisateur=<?php echo
-	$lesUtilisateurs["id"] ?>">Detail </a>
+	<a href="detailEtablissement.php?numUtilisateur=<?php 
+	echo $user["id"] ?>">Detail </a>
 	</li>
 	<li>
 	<a href="suppressionetablissement.php?numUtilisateur=<?php
-	echo $lesUtilisateurs["id"] ?>">Suppression</a>
+	echo $user["id"] ?>">Suppression</a>
 	</li>
-<?php endforeach;?>
+<?php // endforeach; ?>
 
 </html>
-<?php
-
-
-?>

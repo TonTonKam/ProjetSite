@@ -24,7 +24,6 @@
 					<option value="autre">Autre</option>
 					<option value="benevole">Benevole</option>
 					<option value="salarier">Salarier</option>
-					<option value="dirigeant">Dirigeant</option>
 					
 				<input type="submit" value="Valider">
 				<input type="reset" value="Effacer">
