@@ -7,7 +7,7 @@ include_once 'fonction.php';
 
 // $listeUtilisateurs = listeUtilisateur();
 // foreach ($listeUtilisateurs as $lesUtilisateurs):
-$user = getUser($_SESSION["id"]);
+$user = lireUtilisateur($_SESSION["id"]);
 ?>
 
 	<p> Nom : <?php echo $user["nom"] ?> </p>

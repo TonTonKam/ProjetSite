@@ -35,7 +35,7 @@ function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status) {
 	return $requete;
 }
 
-function getUser($id) {
+function lireUtilisateur($id) {
 	$db = gestionnaireDeConnexionMysqli();
     if ($db != NULL) {
 		$req = "select * from utilisateur where idUtilisateur = $id";
