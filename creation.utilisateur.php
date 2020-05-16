@@ -1,5 +1,4 @@
 <?php
-//B creationEtablissement.traitement.php
 
 include_once 'fonction.php';
 
@@ -28,7 +27,8 @@ if (isset($_REQUEST)) {
     creerUtilisateur($nom, $prenom, $email, $password);
 }
 */
-header("Location:principale.php")
+
+header("Location:accueil.php")
 //header("Location:consultation.profil.php")
 
 ?>

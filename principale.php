@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<?php include_once 'fonction.php'; ?>
+<?php 
+include_once 'fonction.php';
+session_start();
+?>
     <head>
         <meta charset="utf-8">
         <!-- importer le fichier de style -->
@@ -26,14 +29,8 @@
                     // afficher un message
                     echo "<br>Bonjour {$user['nom']} vous êtes connectés";
                 }
-                /*
-                else if ($_SESSION['username'] !== "") {
-                    $user = $_SESSION['username'];
-                    // afficher un message
-                    echo "<br>Bonjour $user vous êtes connectés";
-                }
-                */
+                
             ?>
-            
+            <a href="accueil.php">revenir à la page d'accueil</a>
         </div>
 

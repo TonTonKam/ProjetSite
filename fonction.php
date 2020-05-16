@@ -20,30 +20,75 @@ function gestionnaireDeConnexionMysqli() {
 function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status) {
     $db = gestionnaireDeConnexionMysqli();
     if ($db != null) {
-
-        $req = "insert into utilisateur(nom, prenom, adresseMail, password, status) values ('$nom', '$prenom', '$email','$enterPass', '$status')";
-
-        $requete = $db->query($req);
+		$req = "INSERT INTO utilisateur(nom, prenom, adresseMail, password, idStatus) VALUES ('$nom', '$prenom', '$email','$enterPass', '$status')";
+		$requete = mysqli_query($db, $req);
     }else {
-		echo "Une erreur est survenue.";  
+		echo "Une erreur est survenue.";
 	}
 	session_start();
-	$_SESSION['username'] = $nom;
-	$_SESSION['status'] = $status;
+	$_SESSION['nom']   = $nom;
+	$_SESSION['email'] = $email;
+
 	return $requete;
 }
-//fonction permettant d'avoir les informations de l'utisateur
+
 function lireUtilisateur($id) {
 	$db = gestionnaireDeConnexionMysqli();
     if ($db != NULL) {
-		$req = "select * from utilisateur where idUtilisateur = $id";
+		$req 		  = "select * from utilisateur where idUtilisateur = $id";
 		$exec_requete = mysqli_query($db, $req);
 		$user         = mysqli_fetch_array($exec_requete);
-    }
+	}
     return $user;
 }
 
+function statusConcerne($idStatus) {
+	$db = gestionnaireDeConnexionMysqli();
+    if ($db != NULL) {
+		$req 		  = "SELECT numFormation FROM concerne WHERE idStatus = $idStatus";
+		$exec_requete = mysqli_query($db, $req);
+		$formations   = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
+	}
+    return $formations;
+}
+
+function listeFormation() {
+	$lesFormations = array();
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req		   = "SELECT * FROM formation";
+		$exec_requete  = mysqli_query($db, $req);
+		$lesFormations = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
+	}
+	return $lesFormations;
+}
+
+function listeSession(){
+	$listeSession = array();
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req 		  = "SELECT * FROM session";
+		$exec_requete = mysqli_query($db, $req);
+		$listeSession = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
+	}
+	return $listeSession;
+}
+
 /*
+//chercher l'id
+function rechercheId($nom, $email) {
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != null) {
+		$req = "SELECT idUtilisateur FROM utilisateur WHERE nom = $nom, email = $email";
+		$exec_requete = mysqli_query($db, $req);
+		$user = mysqli_fetch_array($exec_requete);
+	}else {
+		echo "Une erreur est survenue."; 
+	}
+	return $user;
+}
+
+//fonction permettant d'avoir les informations de l'utisateur
 // Execution de la requête sql avec $db->query()
 	$succes = $db->query($sql);
 	if ($succes) {

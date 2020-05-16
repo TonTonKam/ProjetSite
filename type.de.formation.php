@@ -1,14 +1,38 @@
+<?php
+include 'fonction.php';
+include_once 'principale.php';
+
+?>
 <html>
-	<?php
-	session_start();
-	include_once 'principale.php';
-	?>
-	<div class="titre">
-		Type de Formations
-	</div>
-	<a href="gestion.formation.php">Formation de gestion</a>
-	<a href="informatique.formation.php">Formation d'informatiques</a>
-	<a href="developpement.formation.php">Formation en developpements durable</a>
-	<a href="secourisme.formation.php">Formation de secourisme</a>
-	<a href="communication.formation.php">Formation en communication</a>
-	<a href="sante.formation.php">Formation en biens être</a>
+    <body>
+    <div class="content">
+        <?php
+        $_SESSION['id'];
+        include_once 'principale.php';
+        include_once 'fonction.php';
+        //ajouter session
+        //ajouter sinscrire
+        ?>
+            <H1> Liste des formations </h1>
+        <?php
+        $listeFormations = listeFormation();
+        foreach ($listeFormations as $formation):
+
+        ?>
+        <div class="present">
+            <p> Objectif de la formation : <?php echo $formation["objectif"] ?> </p>
+            <p> Cout de la formation : 
+            <?php 
+                if($formation["couts"] != null){
+                    echo $formation["couts"];
+                } else{
+                    echo "Gratuit";
+                }
+            ?> </p>
+            <p> Titre de la formation : <?php echo $formation["titre"] ?> </p>
+            <p> Session :  </p>
+            <p> ---------- </p>
+        </div>
+        <?php endforeach;?>
+
+    </div>

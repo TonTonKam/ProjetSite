@@ -1,4 +1,4 @@
-<?php
+S<?php
 session_start();
 include_once 'fonction.php';
 if(isset($_POST['username']) && isset($_POST['password']))

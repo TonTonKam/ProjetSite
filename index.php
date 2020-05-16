@@ -20,7 +20,7 @@
 				
 				<label><b>Creation d'utilisateur</b></label>
 			<br>
-                <a href=formulaire.php>Créer</a>
+                <a href=formulaire.inscription.php>Créer</a>
 
                 <input type="submit" id='submit' value='LOGIN' >
                 <?php
