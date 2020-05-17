@@ -11,7 +11,7 @@ if(isset($_GET["formation"])){
 
     <div class="content">
 
-        <H1> Liste des formations </h1>
+        <h1> Liste des formations </h1>
 
         <div class="present">
             <p><h3> Objectif de la formation : <?php echo $formation["objectif"]; ?> </h3></p>

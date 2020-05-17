@@ -6,6 +6,7 @@ if(isset($_GET["numSession"])){
     $idFormation = $_GET["numSession"];
     $sessionForm = listeSession($idFormation);
     $sessionTab = $sessionForm[0];
+    $_SESSION['numSession'] = $sessionTab['numSession'];
 }
 
 //ajouter sinscrire
@@ -13,7 +14,6 @@ if(isset($_GET["numSession"])){
     <div class="content">
 
         <h1> Session </h1>
-
         <div class="present">
             <h3><p>Date : </h3></p>
             <p> Inscription avant : <?php echo $sessionTab['dateLimiteInsc']; ?></p>
@@ -39,8 +39,9 @@ if(isset($_GET["numSession"])){
             <p> Telephone : <?php echo $lieu['telephone']; ?></p>
 
             <p> nombre de Place possible: <?php echo $sessionTab['nbPlace']; ?></p>
-            <p>------------</p>
+            
             <p><h4>S'inscrire</h4></p>
+            <a href="inscrire.php" class="bouton1">S'inscrire</a>
         </div>
         
     </div>

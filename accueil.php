@@ -16,16 +16,16 @@ $listFormConcerne = statusConcerne($utilisateur['idStatus']);
 		<!-- verifier le idStatus.status de idStatus.concerne -->
 		<?php 
 		foreach ($listFormConcerne as $concerne):
-		$nomFormation = nomFormation($concerne["numFormation"]);
+		$nomFormation = nomsFormation($concerne["numFormation"]);
 		?>
-		<a href="type.de.formation.php?formation=<?php echo $concerne["numFormation"] ?>">
-		Formation : <?php echo $nomFormation[0]['objectif'];?><br /></a>
+		<p><a href="type.de.formation.php?formation=<?php echo $concerne["numFormation"] ?>">
+		Formation : <?php echo $nomFormation[0]["objectif"];?><br /></a></p>
 		
 	</nav>
 		<?php endforeach; ?>
 </html>
 <?php
-/* idée de ressorti
+/* idée ressorti
 <?php foreach ($listFormConcerne as $concerne): ?>
 <a href="type.de.formation.php?formation= <?php echo $concerne["numFormation"] ?>">
 Formation <?php echo $concerne["numFormation"] ?><br /></a>

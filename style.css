@@ -11,7 +11,7 @@ form {
     width:100%;
     padding: 30px;
     border: 1px solid #f1f1f1;
-    background: #fff;
+    background:#fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 #container h1{
@@ -49,4 +49,17 @@ input[type=submit]:hover, input[type=reset]:hover {
     background-color: white;
     color: #53af57;
     border: 1px solid #53af57;
+}
+
+a.bouton1 {
+    padding: 10px 30px; 
+    background: gray; 
+    color: white; 
+}
+a.bouton1:hover {
+    background: black; 
+}
+
+formation {
+
 }

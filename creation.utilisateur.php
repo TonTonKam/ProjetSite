@@ -10,7 +10,7 @@ $status = $_POST['status'];
 
 creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status);
 
-/*
+/* Idee
 //$bd = gestionnaireDeConnexion();
 $bd = new PDO('mysql:host=localhost;dbname=dbbm2l', 'root', '');
 $req= $bd->prepare("INSERT INTO utilisateur (`nom`, `prenom`, `email`, `password`) VALUES ($nom, $prenom, $email, $password);") ;
@@ -28,7 +28,6 @@ if (isset($_REQUEST)) {
 }
 */
 
-header("Location:accueil.php")
-//header("Location:consultation.profil.php")
+header("Location:accueil.php");
 
 ?>
