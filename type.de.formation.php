@@ -2,25 +2,19 @@
 include 'fonction.php';
 include_once 'principale.php';
 
-?>
-<html>
-    <body>
-    <div class="content">
-        <?php
-        $_SESSION['id'];
-        include_once 'principale.php';
-        include_once 'fonction.php';
-        //ajouter session
-        //ajouter sinscrire
-        ?>
-            <H1> Liste des formations </h1>
-        <?php
-        $listeFormations = listeFormation();
-        foreach ($listeFormations as $formation):
+if(isset($_GET["formation"])){
+    $id = $_GET["formation"];
+    $formation = lireFormation($id);
+}
 
-        ?>
+?>
+
+    <div class="content">
+
+        <H1> Liste des formations </h1>
+
         <div class="present">
-            <p> Objectif de la formation : <?php echo $formation["objectif"] ?> </p>
+            <p><h3> Objectif de la formation : <?php echo $formation["objectif"]; ?> </h3></p>
             <p> Cout de la formation : 
             <?php 
                 if($formation["couts"] != null){
@@ -29,10 +23,8 @@ include_once 'principale.php';
                     echo "Gratuit";
                 }
             ?> </p>
-            <p> Titre de la formation : <?php echo $formation["titre"] ?> </p>
-            <p> Session :  </p>
-            <p> ---------- </p>
+            <p> Titre de la formation : <?php echo $formation["titre"]; ?> </p>
+            <p><a href="descriptif.session.php?numSession=<?php echo $id ?>">Voir les sessions</a> </p>
         </div>
-        <?php endforeach;?>
-
+        
     </div>

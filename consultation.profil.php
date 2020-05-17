@@ -1,5 +1,3 @@
-<html>
-
 <?php 
 include_once 'principale.php';
 include_once 'fonction.php';

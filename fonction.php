@@ -52,26 +52,53 @@ function statusConcerne($idStatus) {
     return $formations;
 }
 
-function listeFormation() {
-	$lesFormations = array();
+function nomFormation($numFormation) {
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
-		$req		   = "SELECT * FROM formation";
+		$req		   = "SELECT objectif FROM formation WHERE numFormation = $numFormation";
 		$exec_requete  = mysqli_query($db, $req);
 		$lesFormations = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 	}
 	return $lesFormations;
 }
-
-function listeSession(){
-	$listeSession = array();
+function lireFormation($numFormation){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
-		$req 		  = "SELECT * FROM session";
+		$req		   = "SELECT * FROM formation WHERE numFormation = $numFormation";
+		$exec_requete  = mysqli_query($db, $req);
+		$laFormation = mysqli_fetch_array($exec_requete, MYSQLI_ASSOC);
+	}
+	return $laFormation;
+}
+
+function listeSession($numFormation){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req 		  = "SELECT * FROM session WHERE numformation = $numFormation";
 		$exec_requete = mysqli_query($db, $req);
 		$listeSession = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 	}
 	return $listeSession;
+}
+
+function lireLieu($idLieu){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req 		  = "SELECT * FROM lieu WHERE idLieu = $idLieu";
+		$exec_requete = mysqli_query($db, $req);
+		$lieu 		  = mysqli_fetch_array($exec_requete, MYSQLI_ASSOC);
+	}
+	return $lieu;
+}
+
+function lireIntervenant($idIntervenant){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req 		  = "SELECT * FROM intervenant WHERE idIntervenant = $idIntervenant";
+		$exec_requete = mysqli_query($db, $req);
+		$intervenant = mysqli_fetch_array($exec_requete, MYSQLI_ASSOC);
+	}
+	return $intervenant;
 }
 
 /*
