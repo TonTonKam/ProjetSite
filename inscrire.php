@@ -4,7 +4,10 @@ include_once 'fonction.php';
 
 $idUser = $_SESSION['id'];
 $numSession = $_SESSION['numSession'];
+
+//verification des sessions avant envoie de la requete
 if($idUser != null && $numSession != null){
+    //prend les valeurs de l' idUtilisateur et numSession pour envoyer sur la table sincrire
     sincrire($idUser, $numSession);
     header("Location:consultation.profil.php");
 }else{

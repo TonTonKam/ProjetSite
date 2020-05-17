@@ -21,12 +21,15 @@ $user = lireUtilisateur($_SESSION["id"]);
 	</div>
 		<p><h4>Formation : </h4></p>
 	<?php
+	//verifier la table concerne avec idUser
 	$numSession = listeInscription($_SESSION['id']);
 	if($numSession !== null):
+		//sortir la liste de $numSession
 		foreach ($numSession as $listSession) :
 			$list = $listSession["numSession"];
 			$nomFormation = lireSessionForm($list);
 	?>
+		<!-- liste des formations avec la possibilité de se desinscrit -->
 		<div class=>	
 			<p><?php echo $nomFormation["objectif"]; ?><br/></p>
 			<a href="desinscrire.php" class="bouton1">Desinscrire</a>

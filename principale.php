@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <?php 
+/*
+cette page est une tete de page qui initialise la session_start()
+*/
 include_once 'fonction.php';
 session_start();
 ?>

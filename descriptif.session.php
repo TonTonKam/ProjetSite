@@ -2,14 +2,17 @@
 include 'fonction.php';
 include_once 'principale.php';
 
+//verifie numSession de la table session
 if(isset($_GET["numSession"])){
     $idFormation = $_GET["numSession"];
+    //prend le numero de session pour en faire une liste du tableau session
     $sessionForm = listeSession($idFormation);
+    //prend la 2eme valeur du array
     $sessionTab = $sessionForm[0];
+    //creation de la $_SESSION['numSession']
     $_SESSION['numSession'] = $sessionTab['numSession'];
 }
 
-//ajouter sinscrire
 ?>
     <div class="content">
 
@@ -22,6 +25,7 @@ if(isset($_GET["numSession"])){
 
             <p><h3> Intervenant : </h3></p>
             <?php 
+            //liste d'intervenant
             $intervenant = lireIntervenant($sessionTab['idIntervenant']); 
             ?>
             <p> Nom : <?php echo $intervenant['nom']; ?></p>
@@ -30,6 +34,7 @@ if(isset($_GET["numSession"])){
 
             <p><h3> Lieu de formation : </h3></p>
             <?php 
+            //liste de lieu
             $lieu = lireLieu($sessionTab['idLieu']);
             ?>
             <p> Nom : <?php echo $lieu['nom']; ?></p>
@@ -38,8 +43,22 @@ if(isset($_GET["numSession"])){
             <p> Ville : <?php echo $lieu['ville']; ?></p>
             <p> Telephone : <?php echo $lieu['telephone']; ?></p>
 
-            <p> nombre de Place possible: <?php echo $sessionTab['nbPlace']; ?></p>
-            
+            <!-- calcul le nombre place restante apres verification de la table sincrire -->
+            <?php 
+            $nbInscrit = countSession($_SESSION['numSession']);
+            $nbInscr = $nbInscrit["nbInscrit"];
+            $nbPlace = $sessionTab['nbPlace'];
+            $nbPlaceRestante = ($nbPlace - $nbInscr);
+            ?>
+            <p> nombre de place disponible : 
+                <?php
+                if($nbPlaceRestante == 0){
+                    echo "Plus de place";
+                } else{
+                    echo $nbPlaceRestante;
+                }
+            ?></p>
+            <!-- un bouton pour inscription -->
             <p><h4>S'inscrire</h4></p>
             <a href="inscrire.php" class="bouton1">S'inscrire</a>
         </div>

@@ -25,10 +25,6 @@ function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status) {
     }else {
 		echo "Une erreur est survenue.";
 	}
-	session_start();
-	$_SESSION['nom']   = $nom;
-	$_SESSION['email'] = $email;
-
 	return $requete;
 }
 
@@ -51,6 +47,7 @@ function statusConcerne($idStatus) {
     if ($db != NULL) {
 		$req 		  = "SELECT numFormation FROM concerne WHERE idStatus = $idStatus";
 		$exec_requete = mysqli_query($db, $req);
+		//MYSQLI_ASSOC dans la requete permet d'afficher le nom dans le tableau
 		$formations   = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 	}else {
 		echo "Une erreur est survenue.";
@@ -148,6 +145,7 @@ function listeInscription($idUser){
 	return $sessionInscrit;
 }
 
+//prend le numSession pour afficher le nom de la formation
 function lireSessionForm($numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
@@ -160,6 +158,7 @@ function lireSessionForm($numSession){
 	return $lireSessionForm;
 }
 
+//delete l'inscription avec les 2 identifiants
 function desinscrire($idUser, $numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
@@ -169,6 +168,18 @@ function desinscrire($idUser, $numSession){
 		echo "Une erreur est survenue.";
 	}
 	return $delete;
+}
+
+function countSession($numSession){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		$req		  = "SELECT COUNT(idUtilisateur) AS nbInscrit FROM sinscrire WHERE numSession = $numSession;";
+		$exec_requete = mysqli_query($db, $req);
+		$count		  = mysqli_fetch_array($exec_requete, MYSQLI_ASSOC);
+	}else {
+		echo "Une erreur est survenue.";
+	}
+	return $count;
 }
 
 /* idée

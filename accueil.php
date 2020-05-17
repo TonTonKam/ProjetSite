@@ -18,6 +18,7 @@ $listFormConcerne = statusConcerne($utilisateur['idStatus']);
 		foreach ($listFormConcerne as $concerne):
 		$nomFormation = nomsFormation($concerne["numFormation"]);
 		?>
+		<!-- liste des formations avec leur noms -->
 		<p><a href="type.de.formation.php?formation=<?php echo $concerne["numFormation"] ?>">
 		Formation : <?php echo $nomFormation[0]["objectif"];?><br /></a></p>
 		
