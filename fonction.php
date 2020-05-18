@@ -7,7 +7,7 @@ function gestionnaireDeConnexionMysqli() {
     $db_password = '';
     $db_name     = 'dbbm2l';
     $db_host     = 'localhost';
-    $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
+    $db = mysqli_connect($db_host, $db_username, $db_password, $db_name)
            or die('pas de connexion to database');
 	if (mysqli_connect_errno()) {
     	echo "Echec de la connexion: " . mysqli_connect_error();
@@ -20,19 +20,20 @@ function gestionnaireDeConnexionMysqli() {
 function creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status) {
     $db = gestionnaireDeConnexionMysqli();
     if ($db != null) {
+		//ajouter un utilisateur dans la table utilisateur
 		$req = "INSERT INTO utilisateur(nom, prenom, adresseMail, password, idStatus) VALUES ('$nom', '$prenom', '$email','$enterPass', '$status')";
-		$requete = mysqli_query($db, $req);
+		$requete_exec = mysqli_query($db, $req);
     }else {
 		echo "Une erreur est survenue.";
 	}
-	return $requete;
+	return $requete_exec;
 }
 
 //recuperer les infos des utilisateurs a partir de l'idUtilisateur
 function lireUtilisateur($id) {
 	$db = gestionnaireDeConnexionMysqli();
     if ($db != NULL) {
-		$req 		  = "select * from utilisateur where idUtilisateur = $id";
+		$req 		  = "SELECT * FROM utilisateur WHERE idUtilisateur = $id";
 		$exec_requete = mysqli_query($db, $req);
 		$user         = mysqli_fetch_array($exec_requete);
 	}else {
@@ -120,10 +121,11 @@ function lireIntervenant($idIntervenant){
 	return $intervenant;
 }
 
-//enregistrer des utilisateurs avec la table sinscrire
+//enregistrer des utilisateurs avec la table sinscrire pour valider leur inscription
 function sincrire($idUser, $numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
+		//requete d'ajout d'utilisateur et de session
 		$req	 = "INSERT INTO sinscrire(idUtilisateur, numSession) VALUES ($idUser, $numSession); ";
 		$requete = mysqli_query($db, $req);
 	}else {
@@ -162,6 +164,7 @@ function lireSessionForm($numSession){
 function desinscrire($idUser, $numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
+		//requete de suppression d'inscription a une session
 		$req	= "DELETE FROM sinscrire WHERE sinscrire.idUtilisateur = $idUser AND sinscrire.numSession = $numSession";
 		$delete = mysqli_query($db, $req);
 	}else {
@@ -170,6 +173,7 @@ function desinscrire($idUser, $numSession){
 	return $delete;
 }
 
+//creer un compteur d'inscrit dans une session
 function countSession($numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
@@ -180,6 +184,33 @@ function countSession($numSession){
 		echo "Une erreur est survenue.";
 	}
 	return $count;
+}
+
+//supprimer un compte
+function suppression($idUser){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		//requete de suppression de idUtilisateur
+		$req	= "DELETE FROM `utilisateur` WHERE `utilisateur`.`idUtilisateur` = $idUser";
+		$delete = mysqli_query($db, $req);
+	}else {
+		echo "Une erreur est survenue.";
+	}
+	return $delete;
+}
+
+//mise a jour du profil sans changement de status
+function updateUtilisateur($idUtilisateur, $nom, $prenom, $email){
+	$db = gestionnaireDeConnexionMysqli();
+	if ($db != NULL) {
+		//modification de la table utilisateur
+		$req	= "UPDATE utilisateur SET nom = $nom, prenom = $prenom, adresseMail = $email WHERE `utilisateur`.`idUtilisateur` = $idUtilisateur";
+		$update = mysqli_query($db, $req);
+	}else {
+		echo "Une erreur est survenue.";
+	}
+	var_dump($update);
+	return $update;
 }
 
 /* idée

@@ -1,5 +1,5 @@
 <?php
-include 'fonction.php';
+include_once 'fonction.php';
 include_once 'principale.php';
 
 //verifie numSession de la table session
@@ -43,9 +43,12 @@ if(isset($_GET["numSession"])){
             <p> Ville : <?php echo $lieu['ville']; ?></p>
             <p> Telephone : <?php echo $lieu['telephone']; ?></p>
 
-            <!-- calcul le nombre place restante apres verification de la table sincrire -->
-            <?php 
+            <!-- calcul le nombre place restante apres verification de la table sincrire
+            je ne sais pas faire de trigger dans la bdd alors j'ai fonction basique sur le site -->
+            <?php
+            //cette fonction compte le nombre de personne inscrite
             $nbInscrit = countSession($_SESSION['numSession']);
+            //je met les valeurs du tableau dans une variable pour pouvoir les calculer plus loin
             $nbInscr = $nbInscrit["nbInscrit"];
             $nbPlace = $sessionTab['nbPlace'];
             $nbPlaceRestante = ($nbPlace - $nbInscr);

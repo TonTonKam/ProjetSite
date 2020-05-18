@@ -1,5 +1,5 @@
 <?php
-
+include_once 'principale.php';
 include_once 'fonction.php';
 
 $nom = $_POST['nom'];
@@ -10,6 +10,14 @@ $status = $_POST['status'];
 
 creerUtilisateurMysqli($nom, $prenom, $email, $enterPass, $status);
 
+header('Location:inscription.reussi.php');
+
+/*
+if(bool == true){
+    header('Location:accueil.php');
+}else{
+    header('Location: login.php?erreur=dejaInscrit');
+}
 /* Idee
 //$bd = gestionnaireDeConnexion();
 $bd = new PDO('mysql:host=localhost;dbname=dbbm2l', 'root', '');
@@ -27,7 +35,5 @@ if (isset($_REQUEST)) {
     creerUtilisateur($nom, $prenom, $email, $password);
 }
 */
-
-header("Location:accueil.php");
 
 ?>

@@ -13,10 +13,10 @@ $user = lireUtilisateur($_SESSION["id"]);
 		<p> Email : <?php echo $user["adresseMail"] ?> </p>
 		<p> Mot de passe : ***** </p>
 		<li>
-		<a href="modifier.utilisateur.php?numUtilisateur=<?php echo $user["id"] ?>">Modifier informations </a>
+		<a href="modifier.utilisateur.php?numUtilisateur=<?php echo $user["idUtilisateur"] ?>">Modifier informations </a>
 		</li>
 		<li>
-		<a href="modifier.utilisateur.php?numUtilisateur=<?php echo $user["id"] ?>">Supprimer utilisateur</a>
+		<a href="supprimer.utilisateur.php?numUtilisateur=<?php echo $user["idUtilisateur"] ?>">Supprimer utilisateur</a>
 		</li>
 	</div>
 		<p><h4>Formation : </h4></p>
