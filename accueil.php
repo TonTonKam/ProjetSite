@@ -20,6 +20,7 @@ $listFormConcerne = statusConcerne($utilisateur['idStatus']);
 		?>
 		<!-- liste des formations avec leur noms -->
 		<p><a href="type.de.formation.php?formation=<?php echo $concerne["numFormation"] ?>">
+		<!-- $nomFormation est un double tableau, je prend la 2eme valeur avec ceci $nomFormation[0]["objectif"]
 		Formation : <?php echo $nomFormation[0]["objectif"];?><br /></a></p>
 		
 	</nav>
