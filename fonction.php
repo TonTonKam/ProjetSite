@@ -210,8 +210,6 @@ function updateUtilisateur($nom, $prenom, $email, $idUtilisateur){
 	}else {
 		echo "Une erreur est survenue.";
 	}
-	var_dump($req);
-	var_dump($update);
 	return $update;
 }
 

@@ -8,7 +8,6 @@ if(isset($_GET["numUtilisateur"])){
 
     suppression($idUser);
 
-    //header("location:index.php")
+    header("location:index.php")
 }
-var_dump(suppression($idUser));
 ?>
