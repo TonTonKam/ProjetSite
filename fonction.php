@@ -1,4 +1,5 @@
 <?php
+//note personnelle avec une requete UPDATE, INSERT INTO ... les variables de type $var doivent etre entre guillemet '$var'
 //connexion PDO
 //connexion à la base de données
 function gestionnaireDeConnexionMysqli() {
@@ -126,7 +127,7 @@ function sincrire($idUser, $numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
 		//requete d'ajout d'utilisateur et de session
-		$req	 = "INSERT INTO sinscrire(idUtilisateur, numSession) VALUES ($idUser, $numSession); ";
+		$req	 = "INSERT INTO sinscrire(idUtilisateur, numSession) VALUES ('$idUser', '$numSession'); ";
 		$requete = mysqli_query($db, $req);
 	}else {
 		echo "Une erreur est survenue.";
@@ -165,7 +166,7 @@ function desinscrire($idUser, $numSession){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
 		//requete de suppression d'inscription a une session
-		$req	= "DELETE FROM sinscrire WHERE sinscrire.idUtilisateur = $idUser AND sinscrire.numSession = $numSession";
+		$req	= "DELETE FROM sinscrire WHERE sinscrire.idUtilisateur = '$idUser' AND sinscrire.numSession = '$numSession'";
 		$delete = mysqli_query($db, $req);
 	}else {
 		echo "Une erreur est survenue.";
@@ -191,7 +192,7 @@ function suppression($idUser){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
 		//requete de suppression de idUtilisateur
-		$req	= "DELETE FROM `utilisateur` WHERE `utilisateur`.`idUtilisateur` = $idUser";
+		$req	= "DELETE FROM `utilisateur` WHERE `utilisateur`.`idUtilisateur` = '$idUser'";
 		$delete = mysqli_query($db, $req);
 	}else {
 		echo "Une erreur est survenue.";
@@ -200,15 +201,16 @@ function suppression($idUser){
 }
 
 //mise a jour du profil sans changement de status
-function updateUtilisateur($idUtilisateur, $nom, $prenom, $email){
+function updateUtilisateur($nom, $prenom, $email, $idUtilisateur){
 	$db = gestionnaireDeConnexionMysqli();
 	if ($db != NULL) {
 		//modification de la table utilisateur
-		$req	= "UPDATE utilisateur SET nom = $nom, prenom = $prenom, adresseMail = $email WHERE `utilisateur`.`idUtilisateur` = $idUtilisateur";
+		$req	= "UPDATE `utilisateur` SET `nom` = '$nom', `prenom` = '$prenom', `adresseMail` = '$email' WHERE `utilisateur`.`idUtilisateur` = $idUtilisateur;";
 		$update = mysqli_query($db, $req);
 	}else {
 		echo "Une erreur est survenue.";
 	}
+	var_dump($req);
 	var_dump($update);
 	return $update;
 }
